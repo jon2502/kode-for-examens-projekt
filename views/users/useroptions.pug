@@ -1,0 +1,38 @@
+extends ../includes/header.pug
+block content
+    section(class="margin")
+        h2 options
+        form(action="/user_settings_changes", method="post")
+            label(for="settings1") do you want you likes and dislikes to be color coded:
+            br
+            label(for="html") no color
+            input(type="radio" name="value1" value="no color" checked="checked")
+            br
+            label(for="html") color
+            input(type="radio" name="value1" value="color" )
+            br
+            br
+            label(for="settings2") sepereate likes and dsilikes or have them as a singles score:
+            br
+            label(for="html") seperate
+            input(type="radio" name="value2" value="seperate" checked="checked")
+            br
+            label(for="html") score
+            input(type="radio" name="value2" value="score")
+            br
+            br
+            button(type="submit") save changes
+        br
+        
+        h3(class="header_text") list example based on selected options
+        section(id="example")
+            div(class="listinfo_type1") 
+                    p title
+                    p username
+                    p email
+                    p kategori
+                    p dateadded
+                    p likes
+                    p dislike
+                    p more info
+        br

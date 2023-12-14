@@ -1,0 +1,109 @@
+extends ../includes/header.pug
+block content
+    section(id="infogrid" class="margin") 
+            if(forslag)
+                div 
+                    if(error)
+                        p=error
+                    <!-- main forslag content-->
+                    h2(class="header_text")=forslag.title
+                    h4(class="main_text")="af "+forslag.name
+                    p(class="main_text")=forslag.comments
+                    p(class="main_text")="This release was published on "+forslag.Dateadded
+                    p(class="main_text")="For more information, please contact "+forslag.name+" at "+email
+                    p(class="main_text")="last updated the "+forslag.updatedate
+
+                    
+                    if (clerance === 'admin' && forslag.name !== user)
+                        <!-- knapper til ændring af forslag state-->
+                        h4(class="header_text") change state
+                        if forslag.state == 0
+                            section(class="btflex")
+                                a(href="/info/updatestate/2/"+forslag._id class="button_link main_text") accept
+                                a(href="/info/updatestate/1/"+forslag._id class="button_link main_text") reject
+                        else if (forslag.state > 0)
+                            a(href="/info/updatestate/0/"+forslag._id class="button_link main_text") pening
+
+                    <!-- likes og dislikes-->
+                    include includes/likesdislikes.pug
+
+                    <!-- like og dislike knapper-->
+                    if (clerance === 'user' && forslag.name !== user)
+                        if(uservalue)
+                            if (uservalue.value == "like")
+                                p you have liked this forslag
+                                section(class="btflex")
+                                    a(href="/info/dislike/"+forslag._id class="button_link main_text") dislike
+                                    a(href="/info/remove/"+forslag._id class="button_link main_text") remove like
+                            else if (uservalue.value == "dislike")
+                                p you have disliked this forslag
+                                section(class="btflex")
+                                    a(href="/info/like/"+forslag._id class="button_link main_text") like
+                                    a(href="/info/remove/"+forslag._id class="button_link main_text") remove dislike
+                        else
+                            section(class="btflex")
+                                a(href="/info/like/"+forslag._id class="button_link main_text") like
+                                a(href="/info/dislike/"+forslag._id class="button_link main_text") dislike
+                    h3(class="header_text") Logs 
+                    if(logs)
+                        include includes/logs.pug
+                    else
+                        p(class="main_text") no logs found
+                    h3(class="header_text") add comments
+                    form(action="/info/addcoment" method="post")
+                        label(for="comments") Comments:
+                        br
+                        textarea(name="comments", required, cols="30", rows="10")
+                        br
+                        br
+                        input(type="text",hidden="hidden", name="forslagid",value=forslag._id)
+                        button(type="submit") post
+                    h2(class="header_text") comments
+                    if(comments)
+                        div(id="listinfo_header")
+                            h3 user 
+                            h3 content 
+                            h3 date addedd 
+                            h3 options(s)
+                        section(class="listgrid")
+                            each comment in comments 
+                                div(class="infolist")
+                                    h5=comment.username
+                                    p=comment.content
+                                    p=comment.timestamp
+                                    if(comment.username === user)
+                                        a(href="/info/editcomment/"+comment._id+"/"+comment.forslagid class="button_link main_text") edit comment
+                                        div
+                                            button(class="button_link main_text dlt_comment_btn "+comment.forslagid id=comment._id) delete comment
+                    else
+                        p(class="main_text") no comments found
+                div(id="fileshowcase")
+                    h2 Files
+                    if (images || videos || sounds)
+                        if(images)
+                            each img in images
+                                img(src=img.link, class="fileimg")
+                        if(videos)
+                            each video in videos
+                                video(class="filevideo",controls disablePictureInPicture)
+                                        source(src=video.link) 
+                        if(sounds)
+                            each sound in sounds
+                                audio(class="fileaudio" controls) 
+                                        source(src=sound.link)
+                    else 
+                        p(class="main_text") no files could be found
+                    if(forslag.name === user)
+                        h4(class="header_text") add files
+                        form(action="/info/addfiles", method="post" enctype="multipart/form-data")
+                            label(for="title") files:
+                            br
+                            input(type="file", name="files",value="files",multiple="multiple", class="formfield")
+                            br
+                            input(type="text",hidden="hidden", name="forslagid",value=forslag._id)
+                            button(type="submit") post
+                        h4(class="header_text") manage files 
+                        a(href="fileeditor/"+forslag._id class="button_link main_text") go to file editor
+            else 
+                p(class="main_text") This release could not be located in our database.
+

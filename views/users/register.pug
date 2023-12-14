@@ -1,0 +1,57 @@
+extends ../includes/simpleheader.pug
+block content
+    section(class="margin") 
+        h2(class="header_text") Register
+        if infoMessage
+            p=infoMessage
+
+        form(action="/register", method="post")
+            label(for="Username") Username:
+            br
+            input(type="text", required, name="Username",value="", class="formfield")
+            br
+            label(for="Password") Password:
+            br
+            input(type="password", required, name="Password",value="", class="formfield")
+            br
+            label(for="email") Email:
+            br
+            input(type="text", required, name="Email",value="", class="formfield")
+            br
+            label(for="settings") account setting:
+            br 
+            br
+            label(for="settings1") color for like and dislikes:
+            br
+            label(for="html") no color
+            input(type="radio" name="value1" value="no color" checked="checked")
+            br
+            label(for="html") color
+            input(type="radio" name="value1" value="color" )
+            br
+            br
+            label(for="settings2") sepereate likes and dsilikes or score:
+            br
+            label(for="html") seperate
+            input(type="radio" name="value2" value="seperate" checked="checked")
+            br
+            label(for="html") score
+            input(type="radio" name="value2" value="score")
+            br
+            br
+            button(type="submit") Register user
+        br
+        
+        h3(class="header_text") list example based on selected options
+        section(id="example")
+            div(class="listinfo_type1") 
+                    p title
+                    p username
+                    p email
+                    p kategori
+                    p dateadded
+                    p likes
+                    p dislike
+                    p more info
+        br
+        a(href="/" class="button_link main_text") Login here 

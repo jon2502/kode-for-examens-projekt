@@ -1,0 +1,14 @@
+extends ../includes/simpleheader.pug
+block content
+    section(class="margin")
+        h2 create new activation key
+        if info
+            p= info
+        form(action="/new_activation_key", method="post")
+            label(for="Username") Username:
+            br
+            input(type="text", required, name="username",value="", class="formfield")
+            br
+            button(type="submit") Create new activation key
+        br
+        a(href="/" class="button_link main_text") return to login page

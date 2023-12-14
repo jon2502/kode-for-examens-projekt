@@ -1,0 +1,24 @@
+extends ../includes/header.pug
+block content
+    section(class="margin")
+        if(title)
+            h2(class="header_text")=title 
+        if(info)
+            p=info
+        if(display)
+            section(id="infogrid")
+                div
+                    include ../includes/listelemt.pug  
+                div(id="sortbtn")  
+                    div(class="btflex")
+                        a(href="/forslag/list/"+currentstate+"/Dateadded/-1" class="button_link main_text") sort by date oldest to newest
+                        a(href="/forslag/list/"+currentstate+"/Dateadded/1" class="button_link main_text") sort by date newest to oldest
+                    div(class="btflex") 
+                        a(href="/forslag/list/"+currentstate+"/title/1" class="button_link main_text") sort by title a to z
+                        a(href="/forslag/list/"+currentstate+"/title/-1" class="button_link main_text") sort by title z to a
+                    div(class="btflex") 
+                        a(href="/forslag/list/"+currentstate+"/name/1" class="button_link main_text") sort by usernsme a to z
+                        a(href="/forslag/list/"+currentstate+"/name/-1" class="button_link main_text") sort by usernsme z to a
+                
+        else
+            p no content found

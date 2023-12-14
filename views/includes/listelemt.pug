@@ -1,0 +1,73 @@
+if (likesdislikes_option == "score")
+    div(id="list_header_type2")
+                h3 title
+                h3 user
+                h3 email
+                h3 kategori
+                h3 date added
+                h3 Score
+                h3 more info
+
+else if (likesdislikes_option == "seperate")
+    div(id="list_header_type1")
+                h3 title
+                h3 user
+                h3 email
+                h3 kategori
+                h3 date added
+                h3 likes 
+                h3 dislikes
+                h3 more info
+
+if (color_option == "no color" && likesdislikes_option == "seperate")
+    each forslag in display
+        div(class="listinfo_type1") 
+            p=forslag.title
+            p=forslag.name
+            p=forslag.email
+            p=forslag.kategori
+            p=forslag.Dateadded
+            p=forslag.like
+            p=forslag.dislike
+            a(href="/info/"+forslag._id class="button_link main_text") more info
+
+else if (color_option == "color" && likesdislikes_option == "seperate")
+    each forslag in display
+        div(class="listinfo_type1") 
+            p=forslag.title
+            p=forslag.name
+            p=forslag.email
+            p=forslag.kategori
+            p=forslag.Dateadded
+            p(class="green")=forslag.like
+            p(class="red")=forslag.dislike
+            a(href="/info/"+forslag._id class="button_link main_text") more info
+
+else if (color_option == "no color" && likesdislikes_option == "score")
+    each forslag in display
+        div(class="listinfo_type2") 
+            p=forslag.title
+            p=forslag.name
+            p=forslag.email
+            p=forslag.kategori
+            p=forslag.Dateadded
+            p=forslag.like-forslag.dislike
+            a(href="/info/"+forslag._id class="button_link main_text") more info
+
+else if (color_option == "color" && likesdislikes_option == "score")
+        each forslag in display
+            div(class="listinfo_type2") 
+                p=forslag.title
+                p=forslag.name
+                p=forslag.email
+                p=forslag.kategori
+                p=forslag.Dateadded
+                if (forslag.like-forslag.dislike > 0)
+                    p(class="green")=forslag.like-forslag.dislike
+                else if (forslag.like-forslag.dislike < 0)
+                    p(class="red")=forslag.like-forslag.dislike
+                else 
+                    p=forslag.like-forslag.dislike
+                a(href="/info/"+forslag._id class="button_link main_text") more info
+else 
+    h1 something whent wrong go to user setings and try to edit them

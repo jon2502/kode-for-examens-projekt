@@ -1,0 +1,20 @@
+extends ../includes/header.pug
+block content
+    section(class="margin")
+        section(class="btflex")
+            button(id="delete_user_button" class="button_link main_text") delete user
+            a(href="/edit_user_settings" class="button_link main_text") edit user options
+        section(id="are_you_sure")
+        h3 userproposals
+        if(display)
+            include ../includes/listelemt.pug
+        else 
+            p you have created no prorposals
+        if (clerance === 'user')
+            include includes/userprofile.pug
+        if (clerance === 'admin')
+            if (logedforslag)
+                include includes/adminprofile.pug
+            else 
+                p no loged idears
+        

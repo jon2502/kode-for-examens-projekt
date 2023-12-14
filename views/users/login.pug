@@ -1,0 +1,22 @@
+extends ../includes/simpleheader.pug
+block content
+    section(class="margin") 
+        h2(class="header_text") Login
+        if(infoMessage)
+            p=infoMessage
+        
+        form(action="/login", method="post")
+            label(for="Username") Username:
+            br
+            input(type="text", required, name="Username",value="", class="formfield")
+            br
+            label(for="Password") Password:
+            br
+            input(type="password", required, name="Password",value="", class="formfield")
+            br
+            button(type="submit") Login
+        br
+        section(class="btflex")
+            a(href="/register" class="button_link main_text") Register here 
+            a(href="/recover" class="button_link main_text") Forgot password 
+            a(href="/new_activation_key" class="button_link main_text") create new registration key 

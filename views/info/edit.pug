@@ -1,0 +1,14 @@
+extends ../includes/header.pug
+block content
+    if(content)
+        form(action="/info/editcomment" method="post")
+            label(for="comment") Comment:
+            br
+            textarea(name="comment", cols="30", rows="10")=content.content
+            br
+            br
+            input(type="text",hidden="hidden", name="forslagid",value=content.forslagid)
+            input(type="text",hidden="hidden", name="id",value=content._id)
+            button(type="submit") post
+    else
+        p found nothing

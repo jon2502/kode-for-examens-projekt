@@ -1,0 +1,26 @@
+extends ../includes/header.pug
+block content
+    section(class="form_setup") 
+        if(infoMessage)
+            p=infoMessage
+        form(action="/forslag/form", method="post" enctype="multipart/form-data")
+            label(for="title") Title:
+            br
+            input(type="text", required, name="title", class="formfield")
+            br
+            label(for="title") files:
+            br
+            input(type="file", name="files",value="files",multiple="multiple", class="formfield")
+            br
+            label(for="kategori") kategori: 
+            br
+            select(name="kategori")
+                option(value="test1") test1 
+                option(value="test2") test2 
+                option(value="test3") test3 
+            br
+            label(for="comments") Commments:
+            br
+            textarea(name="comments", required, value="add comment", class="formfield", cols="30", rows="10")
+            br
+            button(type="submit") post

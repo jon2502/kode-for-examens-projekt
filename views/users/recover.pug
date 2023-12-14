@@ -1,0 +1,15 @@
+extends ../includes/simpleheader.pug
+block content
+    section(class="margin")
+        h2 Recover lost password
+        if error
+            p error
+        else
+            form(action="/recover", method="post")
+                label(for="Username") Username:
+                br
+                input(type="text", required, name="usernameforrecovery",value="", class="formfield")
+                br
+                button(type="submit") Recover Password
+        br
+        a(href="/" class="button_link main_text") return to login page

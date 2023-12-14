@@ -1,0 +1,8 @@
+each log in logs 
+    if (log.state == 0)
+        p(class="main_text")=log.username+" admin changed idear status to pening  on the "+log.timestamp 
+    else if (log.state == 1)
+        p(class="main_text")=log.username+" admin changed idear status to rejected on the "+log.timestamp
+    else if (log.state == 2)
+        p(class="main_text")=log.username+" admin changed idear status to accepted on the "+log.timestamp
+    

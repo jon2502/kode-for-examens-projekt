@@ -1,0 +1,31 @@
+extends ../includes/header.pug
+block content
+    section(class="margin")
+        if(message)
+                p(class="main_text")=message
+        a(href="/info/"+forslag._id class="button_link main_text") go back 
+        section(id="fileeditorflex") 
+            if (images || videos || sounds)
+                if(images)
+                    each img in images
+                        section(class="editorflex")
+                            img(src=img.link, class="fileimg")
+                            div
+                                button(class="deletefile" id=img.public_id) delete
+                if(videos)
+                    each video in videos
+                        section(class="editorflex")
+                            video(class="filevideo",controls disablePictureInPicture)
+                                    source(src=video.link) 
+                            div
+                                button(class="deletefile" id=video.public_id) delete
+                if(sounds)
+                    each sound in sounds
+                        section(class="editorflex")
+                            audio(class="fileaudio" controls) 
+                                    source(src=sound.link)
+                            div
+                                button(class="deletefile" id=sound.public_id) delete
+            else 
+                p(class="main_text") no files could be found
+

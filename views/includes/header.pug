@@ -1,0 +1,16 @@
+doctype html
+html
+  link(rel='stylesheet', href='/stylesheets/styling.css')
+  header(class='header')
+    section(id="header_content")
+      div(id="links")
+          a(href="/forslag/list/0") pending
+          a(href="/forslag/list/1") rejected
+          a(href="/forslag/list/2") accepted
+          a(href="/forslag/form") create new idear
+          a(href="/profile") profile
+          a(href="/logout") logout
+         
+  body
+    block content
+    script(src="/javascripts/script.js") 

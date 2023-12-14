@@ -1,0 +1,146 @@
+h2 likse
+if(likes)
+    if (likesdislikes_option == "score")
+        div(id="list_header_type2")
+            h3 title
+            h3 user
+            h3 email
+            h3 kategori
+            h3 date added
+            h3 Score
+            h3 more info
+    else if (likesdislikes_option == "seperate")
+        div(id="list_header_type1")
+            h3 title
+            h3 user
+            h3 email
+            h3 kategori
+            h3 date added
+            h3 likes 
+            h3 dislikes
+            h3 more info
+
+    if (color_option == "no color" && likesdislikes_option == "seperate")
+        each like in likes
+            div(class="listinfo_type1") 
+                p=like.title
+                p=like.name
+                p=like.email
+                p=like.kategori
+                p=like.Dateadded
+                p=like.like
+                p=like.dislike
+                a(href="/info/"+like._id) more info
+
+    else if (color_option == "color" && likesdislikes_option == "seperate")
+        each like in likes
+            div(class="listinfo_type1") 
+                p=like.title
+                p=like.name
+                p=like.email
+                p=like.kategori
+                p=like.Dateadded
+                p(class="green")=like.like
+                p(class="red")=like.dislike
+                a(href="/info/"+like._id) more info
+
+    else if (color_option == "no color" && likesdislikes_option == "score")
+        each like in likes
+            div(class="listinfo_type2") 
+                p=like.title
+                p=like.name
+                p=like.email
+                p=like.kategori
+                p=like.Dateadded
+                p=like.like-like.dislike
+                a(href="/info/"+like._id class="button_link main_text") more info
+    else if (color_option == "color" && likesdislikes_option == "score")
+        each like in likes
+            div(class="listinfo_type2") 
+                p=like.title
+                p=like.name
+                p=like.email
+                p=like.kategori
+                p=like.Dateadded
+                if (like.like-like.dislike > 0)
+                    p(class="green")=like.like-like.dislike
+                else if (like.like-like.dislike < 0)
+                    p(class="red")=like.like-like.dislike
+                else 
+                    p=like.like-like.dislike
+                a(href="/info/"+like._id class="button_link main_text") more info
+else
+    p no likes found    
+            
+h2 dislikse
+if(dislikes)
+    if (likesdislikes_option == "score")
+        div(id="list_header_type2")
+            h3 title
+            h3 user
+            h3 email
+            h3 kategori
+            h3 date added
+            h3 Score
+            h3 more info
+
+    else if (likesdislikes_option == "seperate")
+        div(id="list_header_type1")
+            h3 title
+            h3 user
+            h3 email
+            h3 kategori
+            h3 date added
+            h3 likes 
+            h3 dislikes
+            h3 more info
+    
+    if (color_option == "no color" && likesdislikes_option == "seperate")
+        each dislike in dislikes
+            div(class="listinfo_type1") 
+                p=dislike.title
+                p=dislike.name
+                p=dislike.email
+                p=dislike.kategori
+                p=dislike.Dateadded
+                p=dislike.like
+                p=dislike.dislike
+                a(href="/info/"+dislike._id) more info
+    else if (color_option == "color" && likesdislikes_option == "seperate")
+        each dislike in dislikes
+            div(class="listinfo_type1") 
+                p=dislike.title
+                p=dislike.name
+                p=dislike.email
+                p=dislike.kategori
+                p=dislike.Dateadded
+                p(class="green")=dislike.like
+                p(class="red")=dislike.dislike
+                a(href="/info/"+dislike._id) more info
+    else if (color_option == "no color" && likesdislikes_option == "score")
+        each dislike in dislikes
+            div(class="listinfo_type2") 
+                p=dislike.title
+                p=dislike.name
+                p=dislike.email
+                p=dislike.kategori
+                p=dislike.Dateadded
+                p=dislike.like-dislike.dislike
+                a(href="/info/"+dislike._id class="button_link main_text") more info
+    else if (color_option == "color" && likesdislikes_option == "score")
+        each dislike in dislikes
+            div(class="listinfo_type2") 
+                p=dislike.title
+                p=dislike.name
+                p=dislike.email
+                p=dislike.kategori
+                p=dislike.Dateadded
+                if (dislike.like-dislike.dislike > 0)
+                    p(class="green")=dislike.like-dislike.dislike
+                else if (dislike.like-dislike.dislike < 0)
+                    p(class="red")=dislike.like-dislike.dislike
+                else 
+                    p=dislike.like-like.dislike
+                a(href="/info/"+dislike._id class="button_link main_text") more info
+else
+    p no dislikes found

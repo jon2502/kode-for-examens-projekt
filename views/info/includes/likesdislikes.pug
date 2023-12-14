@@ -1,0 +1,25 @@
+if (color_option == "no color" && likesdislikes_option == "seperate")
+    h4(class="header_text") likes and dislkes  
+    p="Likes: "+forslag.like
+    p="Dislikes: "+forslag.dislike
+else if (color_option == "color" && likesdislikes_option == "seperate")
+    h4(class="header_text") likes and dislkes  
+    p(class="green")="Likes: "+forslag.like
+    p(class="red")="Dislikes: "+forslag.dislike
+else if (color_option == "no color" && likesdislikes_option == "score")
+    h4(class="header_text") likes and dislkes score:
+    p(class="green")="score: "+(forslag.like-forslag.dislike)
+else if (color_option == "color" && likesdislikes_option == "score")
+    if (forslag.like-forslag.dislike > 0)
+        h4(class="header_text") likes and dislkes score:
+        p(class="green")="score: "+(forslag.like-forslag.dislike)
+    else if (forslag.like-forslag.dislike < 0)
+        h4(class="header_text") likes and dislkes score:
+        p(class="red")="score: "+ (forslag.like-forslag.dislike)
+    else 
+        h4(class="header_text") likes and dislkes score:
+        p="score: "+(forslag.like-forslag.dislike)
+else
+    h4(class="header_text") error 
+    p something went wrong while trying to find likes and dislkies based on user options try editingt user options
+    
