@@ -1,5 +1,5 @@
-# todoapp
-Express mongoose project
+# Kode for Examens Projekt
+examens projekt
 
 # Setup to dev
 1. Clone code
